@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+ 
+{% block title %}
+{{ column.title }}
+{% endblock title %}
+ 
+{% block content %}
+栏目简介：{{ column.intro }}
+栏目文章列表：
+<ul>
+  {% for article in home_display_article %}
+    <li>
+      <a href="{{ article.get_absolute_url }}">{{ article.title}}</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock content %}
+
+{% load threadedcomments_tags %}
+<h2>Comments for {{ column.title }}:</h2>
+{% render_comment_list for object %}
+{% render_comment_form for object %}
